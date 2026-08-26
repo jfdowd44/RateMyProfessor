@@ -1,0 +1,14 @@
+﻿@page
+@model RateMyProfessor.Pages.IndexModel
+
+@using RateMyProfessor.Components
+
+@{
+    ViewData["Title"] = "Flagler CIS – Rate My Professors";
+}
+<!-- Index page displays the .razor (blazor) page-->
+@(await Html.RenderComponentAsync<ProfessorList>(RenderMode.ServerPrerendered))
+
+@section Scripts {
+    <script src="_framework/blazor.server.js"></script>
+}

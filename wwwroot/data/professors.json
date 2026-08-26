@@ -1,0 +1,219 @@
+[
+  {
+    "Id": "1",
+    "Name": "Jeremy Fei Wang",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/t4/media/content-types/profiles-335-x-335/profile-jeremy-wang-334x334.jpg.webp",
+    "Position": "Professor of Computer Information Systems; Director of the China Program",
+    "Office": "74 Riberia Street, Room 202",
+    "Phone": "904-819-6369",
+    "Ratings": [
+      5,
+      5,
+      5,
+      4,
+      5,
+      4,
+      5,
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "Reviews": [
+      {
+        "Stars": 5,
+        "Text": "fun class",
+        "CreatedAt": "2025-12-03T16:56:23.4814983-05:00"
+      },
+      {
+        "Stars": 4,
+        "Text": "Fun Classes",
+        "CreatedAt": "2025-12-03T17:12:51.2628398-05:00"
+      },
+      {
+        "Stars": 5,
+        "Text": ".",
+        "CreatedAt": "2025-12-03T17:12:57.9814607-05:00"
+      },
+      {
+        "Stars": 4,
+        "Text": "Enjoyed app 2",
+        "CreatedAt": "2025-12-03T18:30:41.3506085-05:00"
+      },
+      {
+        "Stars": 5,
+        "Text": ".",
+        "CreatedAt": "2025-12-05T12:49:56.1111322-05:00"
+      },
+      {
+        "Stars": 5,
+        "Text": "very good",
+        "CreatedAt": "2026-08-26T18:53:53.7575069-04:00"
+      },
+      {
+        "Stars": 5,
+        "Text": "test",
+        "CreatedAt": "2026-08-26T18:54:13.544026-04:00"
+      },
+      {
+        "Stars": 5,
+        "Text": ".",
+        "CreatedAt": "2026-08-26T18:54:16.8665725-04:00"
+      }
+    ],
+    "AverageRating": 4.75
+  },
+  {
+    "Id": "2",
+    "Name": "Haiyan Huang",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/2024-04/Haiyan%20Huang%2C%201-to-1.jpg.webp?itok=w3G0Jo3I",
+    "Position": "Assistant Professor of Computer Information Systems; Coordinator CIS",
+    "Office": "74 Riberia Street, Room 103",
+    "Phone": "904-819-6267",
+    "Ratings": [
+      5,
+      4,
+      5
+    ],
+    "Reviews": [],
+    "AverageRating": 4.666666666666667
+  },
+  {
+    "Id": "3",
+    "Name": "Allen Barclay",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/t4/media/content-types/profiles-335-x-335/profile-allen-barclay-335x335.jpg.webp?itok=ky8S61q5",
+    "Position": "Department Chair and Associate Professor of Management",
+    "Office": "Wiley Hall, Room 305",
+    "Phone": "904-826-8688",
+    "Ratings": [
+      5,
+      5,
+      4
+    ],
+    "Reviews": [],
+    "AverageRating": 4.666666666666667
+  },
+  {
+    "Id": "4",
+    "Name": "Dana Hart Slater",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/2024-02/Dana%20Hart.jpg.webp?itok=hF3KLtJl",
+    "Position": "Associate Professor of Accounting",
+    "Office": "Wiley Hall, Room 108",
+    "Phone": "NA",
+    "Ratings": [
+      3,
+      2,
+      2,
+      5,
+      2
+    ],
+    "Reviews": [
+      {
+        "Stars": 5,
+        "Text": "meh",
+        "CreatedAt": "2025-12-03T16:17:23.9215464-05:00"
+      },
+      {
+        "Stars": 2,
+        "Text": "Does properly tailor course material to tests",
+        "CreatedAt": "2025-12-05T12:38:15.7679729-05:00"
+      }
+    ],
+    "AverageRating": 2.8
+  },
+  {
+    "Id": "5",
+    "Name": "Jorge Herrera",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/t4/media/content-types/profiles-335-x-335/employee-recognition-2020/Jorge-Herrera---final-103020.jpg.webp?itok=8TRycqWx",
+    "Position": "Associate Professor of Business; Program Coordinator, International Business",
+    "Office": "Wiley Hall, Room 308",
+    "Phone": "904-826-8643",
+    "Ratings": [
+      4,
+      4,
+      5
+    ],
+    "Reviews": [],
+    "AverageRating": 4.333333333333333
+  },
+  {
+    "Id": "6",
+    "Name": "Brett Blazevich",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/t4/media/content-types/profiles-335-x-335/brett-blazevich-334x334.jpg.webp?itok=kFmwYwsk",
+    "Position": "Finance Coordinator, Assistant Professor of Finance",
+    "Office": "Wiley Hall, Room 303",
+    "Phone": "904-826-8510",
+    "Ratings": [
+      4,
+      5,
+      4
+    ],
+    "Reviews": [],
+    "AverageRating": 4.333333333333333
+  },
+  {
+    "Id": "7",
+    "Name": "Blen Solomon",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/t4/media/content-types/profiles-335-x-335/Blen-Photo.jpg.webp?itok=qX5CnJcy",
+    "Position": "Associate Professor of Economics; Coordinator, Economics Program",
+    "Office": "Wiley Hall, Room 301",
+    "Phone": "904-826-8633",
+    "Ratings": [
+      5,
+      5,
+      4,
+      5,
+      4,
+      4
+    ],
+    "Reviews": [
+      {
+        "Stars": 5,
+        "Text": "Great",
+        "CreatedAt": "2025-12-03T16:17:10.3024684-05:00"
+      },
+      {
+        "Stars": 4,
+        "Text": "good macro class",
+        "CreatedAt": "2025-12-03T17:13:12.3317071-05:00"
+      },
+      {
+        "Stars": 4,
+        "Text": "testing",
+        "CreatedAt": "2025-12-03T18:32:16.9031489-05:00"
+      }
+    ],
+    "AverageRating": 4.5
+  },
+  {
+    "Id": "8",
+    "Name": "Allison Roberts",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/t4/media/live-migration/tmp/migration/sebin/b/j/profile-allison-roberts-334x334.jpg.webp?itok=VzLEojh-",
+    "Position": "Freytag Associate Professor of Economics; Faculty Athletics Representative",
+    "Office": "Brown Innovation Center",
+    "Phone": "904-826-8543",
+    "Ratings": [
+      4,
+      4,
+      5
+    ],
+    "Reviews": [],
+    "AverageRating": 4.333333333333333
+  },
+  {
+    "Id": "9",
+    "Name": "Yvan Kelly",
+    "img": "https://www.flagler.edu/sites/default/files/styles/large_2x/public/t4/media/content-types/profiles-335-x-335/KELLY_YVAN.jpg.webp?itok=_-8T4cDF",
+    "Position": "Department Chair, Professor of Economics",
+    "Office": "Wiley Hall, Room 209",
+    "Phone": "904-819-6219",
+    "Ratings": [
+      4,
+      3,
+      5
+    ],
+    "Reviews": [],
+    "AverageRating": 4
+  }
+]

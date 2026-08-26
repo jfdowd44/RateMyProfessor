@@ -1,0 +1,258 @@
+﻿@namespace RateMyProfessor.Components
+@using RateMyProfessor.Models
+@using RateMyProfessor.Services
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+
+@inject JsonFileProfessorService ProfessorService
+
+@code {
+    //Below is declaration of variables and methods used in the component
+    private List<Professor> Professors = new();
+    private List<Professor> FilteredProfessors = new();
+    private Professor? selectedProfessor;
+    private string? selectedProfessorId;
+
+    private int newStars = 5;
+    private string newText = "";
+    private string? errorMessage;
+    private string? successMessage;
+
+    private string searchTerm = "";
+
+    protected override void OnInitialized()
+    {
+        Professors = ProfessorService.GetProfessors();
+        FilteredProfessors = Professors;
+    }
+
+    //Below searches professors based on the text entry match to name, position, office, or phone
+    private void Search()
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            FilteredProfessors = Professors;
+            return;
+        }
+
+        string term = searchTerm.ToLower();
+
+        FilteredProfessors = Professors.Where(p =>
+            p.Name.ToLower().Contains(term) ||
+            p.Position.ToLower().Contains(term) ||
+            p.Office.ToLower().Contains(term) ||
+            p.Phone.ToLower().Contains(term)
+        ).ToList();
+    }
+
+    //Below clears the search and resets the filtered list
+    private void ClearSearch()
+    {
+        searchTerm = "";
+        FilteredProfessors = Professors;
+    }
+
+    private void HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            Search();
+        }
+    }
+
+    //Opens the selected professor modal and review form
+    private void OpenModal(string professorId)
+    {
+        selectedProfessorId = professorId;
+        selectedProfessor = Professors.FirstOrDefault(p => p.Id == professorId);
+
+        newStars = 5;
+        newText = string.Empty;
+        errorMessage = null;
+        successMessage = null;
+    }
+
+    //Submits the review after validating the input (A rating and a comment, both are mandatory)
+    private void SubmitReview()
+    {
+        if (selectedProfessorId == null || selectedProfessor == null)
+            return;
+
+        if (newStars < 1 || newStars > 5)
+        {
+            errorMessage = "Please select a star rating between 1 and 5.";
+            successMessage = null;
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(newText))
+        {
+            errorMessage = "Please enter a short written review before submitting.";
+            successMessage = null;
+            return;
+        }
+
+        if (newText.Length > 400)
+        {
+            newText = newText.Substring(0, 400);
+        }
+
+        ProfessorService.AddReview(selectedProfessorId, newStars, newText);
+
+        Professors = ProfessorService.GetProfessors();
+        FilteredProfessors = Professors;
+        selectedProfessor = Professors.FirstOrDefault(p => p.Id == selectedProfessorId);
+
+        successMessage = "Review submitted successfully!";
+        errorMessage = null;
+
+        newStars = 5;
+        newText = "";
+    }
+
+    private void OnStarChanged(ChangeEventArgs e)
+    {
+        if (e.Value != null)
+            newStars = int.Parse(e.Value.ToString());
+    }
+}
+
+<!-- Search bar -->
+<div class="search-bar-container" style="margin-bottom:20px;">
+    <input type="text"
+           class="form-control"
+           placeholder="Search professors..."
+           @bind="searchTerm"
+           @onkeydown="HandleKeyPress" />
+
+    <button class="btn btn-primary mt-2" @onclick="Search">
+        Search
+    </button>
+
+    <button class="btn btn-secondary mt-2 ml-2" @onclick="ClearSearch">
+        Clear
+    </button>
+</div>
+
+<!-- Professor list -->
+<div class="card-columns">
+    @foreach (var prof in FilteredProfessors)
+    {
+        <div class="card professor-card"
+             style="cursor:pointer;"
+             data-toggle="modal"
+             data-target="#professorModal"
+             @onclick="() => OpenModal(prof.Id)">
+
+            <div class="card-img" style="background-image: url('@prof.img');"></div>
+
+            <div class="card-body">
+                <h5 class="card-title">@prof.Name</h5>
+                <p class="card-text">@prof.Position</p>
+                <p class="card-text"><strong>Office:</strong> @prof.Office</p>
+                <p class="card-text"><strong>Phone:</strong> @prof.Phone</p>
+                <p class="card-text">
+                    <strong>Avg Rating:</strong>
+                    @prof.AverageRating.ToString("0.0") ⭐
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal cards for when a professor is selected -->
+<div class="modal fade" id="professorModal" tabindex="-1" role="dialog"
+     aria-labelledby="professorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        @if (selectedProfessor != null)
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="professorTitle">@selectedProfessor.Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="@selectedProfessor.img"
+                             alt="@selectedProfessor.Name"
+                             class="modal-prof-img" />
+                    </div>
+
+                    <p class="mt-3"><strong>@selectedProfessor.Position</strong></p>
+                    <p><strong>Office:</strong> @selectedProfessor.Office</p>
+                    <p><strong>Phone:</strong> @selectedProfessor.Phone</p>
+                    <p><strong>Average Rating:</strong> @selectedProfessor.AverageRating.ToString("0.0") ⭐</p>
+
+                    <hr />
+
+                    <h6>Leave a Review</h6>
+
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="error-message">@errorMessage</div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(successMessage))
+                    {
+                        <div class="success-message">@successMessage</div>
+                    }
+
+                    <label><strong>Select Rating:</strong></label>
+                    <div class="star-select mb-2">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <label class="mr-2">
+                                <input type="radio"
+                                       name="rating"
+                                       value="@i"
+                                       @onchange="OnStarChanged" />
+                                @i ⭐
+                            </label>
+                        }
+                    </div>
+
+                    <label><strong>Your Review (max 400 chars):</strong></label>
+                    <textarea @bind="newText"
+                              maxlength="400"
+                              class="form-control"
+                              style="height: 90px;"></textarea>
+
+                    <button class="btn-submit mt-2"
+                            @onclick="SubmitReview">
+                        Submit Review
+                    </button>
+
+                    <hr />
+
+                    <h6>Reviews</h6>
+
+                    @if (selectedProfessor.Reviews == null || !selectedProfessor.Reviews.Any())
+                    {
+                        <p>No reviews yet.</p>
+                    }
+                    else
+                    {
+                        @foreach (var r in selectedProfessor.Reviews.OrderByDescending(r => r.CreatedAt))
+                        {
+                            <div class="review">
+                                <strong>@r.Stars ⭐</strong>
+                                <p>@r.Text</p>
+                                <small>@r.CreatedAt.ToShortDateString()</small>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
